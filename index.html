@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tecnoemprende Dubai — Bespoke AI Commercial Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F6F1E7;
+      --surface: #FFFDF8;
+      --ink: #14201B;
+      --muted: #4A5550;
+      --brass: #7A5A1E;
+      --brass-soft: rgba(122, 90, 30, 0.12);
+      --border: rgba(20, 32, 27, 0.1);
+    }
+    [data-theme="dark"] {
+      --bg: #09100D;
+      --surface: #121D18;
+      --ink: #F2EDE0;
+      --muted: #B0B8B4;
+      --brass: #D9B76F;
+      --brass-soft: rgba(217, 183, 111, 0.14);
+      --border: rgba(242, 237, 224, 0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.55;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+    h1, h2, h3, .serif { font-family: 'Fraunces', serif; font-weight: 600; }
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .brand-logo span { color: var(--brass); }
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+    .wa-icon-btn {
+      width: 42px; height: 42px;
+      border-radius: 999px;
+      background: #25D366;
+      color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      border: none;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.28);
+    }
+    .menu-btn {
+      width: 42px; height: 42px;
+      border-radius: 999px;
+      background: var(--brass-soft);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+    .drawer {
+      position: fixed; top: 0; right: -320px; width: 300px; height: 100vh;
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      z-index: 100;
+      padding: 24px;
+      transition: right 0.28s ease;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .drawer.open { right: 0; }
+    .drawer a, .drawer button {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: var(--bg);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+    }
+    .container { max-width: 1120px; margin: 0 auto; padding: 24px 18px 64px; }
+    .vip-hero {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      margin-bottom: 36px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.04);
+    }
+    @media (min-width: 820px) {
+      .vip-hero { grid-template-columns: 360px 1fr; align-items: center; padding: 36px; }
+    }
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background: #000;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 2px solid var(--brass);
+      position: relative;
+    }
+    .video-frame video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--brass-soft);
+      color: var(--brass);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .vip-title { font-size: clamp(1.65rem, 3.5vw, 2.5rem); line-height: 1.15; margin-bottom: 12px; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; align-items: center; }
+    .btn-primary {
+      padding: 14px 24px;
+      border-radius: 999px;
+      background: var(--brass);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-secondary {
+      padding: 14px 22px;
+      border-radius: 999px;
+      background: var(--bg);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    details {
+      margin-top: 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px 16px;
+    }
+    summary { cursor: pointer; font-weight: 600; color: var(--brass); }
+    details p { margin-top: 8px; font-size: 0.92rem; color: var(--muted); }
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 22px;
+      margin-top: 20px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 16px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .card .video-frame { aspect-ratio: 9 / 16; }
+    .tiers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 36px;
+    }
+    .tier-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+    }
+    footer {
+      text-align: center;
+      padding: 32px 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .floating-wa {
+      position: fixed; bottom: 22px; right: 22px; z-index: 90;
+      width: 56px; height: 56px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="#" class="brand-logo">Tecnoemprende <span>Dubai Studio</span></a>
+    <div class="header-actions">
+      <a href="https://wa.me/971508379080" target="_blank" rel="noopener" class="wa-icon-btn" aria-label="WhatsApp">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <nav class="drawer" id="drawer">
+    <button id="closeDrawerBtn">✕ Close Menu</button>
+    <a href="#vip-showcase">Complimentary Brand Sample</a>
+    <a href="#portfolio">Dubai Luxury Portfolio (8 Brands)</a>
+    <a href="#packages">Monthly Production Packages</a>
+    <button id="themeToggleBtn">🌙 Toggle Light / Dark Theme</button>
+  </nav>
+
+  <main class="container">
+    <section id="vip-showcase" class="vip-hero">
+      <div class="video-frame">
+        <video id="heroVideo" controls playsinline preload="metadata" poster="videos/IZIL_Beauty_Bottle_9x16.jpg">
+          <source id="heroVideoSrc" src="videos/IZIL_Beauty_Studio_Ad_9x16.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div>
+        <span class="badge" id="heroBadge">Complimentary 9:16 Master HD Sample</span>
+        <h1 class="vip-title" id="heroTitle">Custom 9:16 Commercial Reel — Prepared for IZIL Beauty Dubai</h1>
+        <p id="heroSubtitle" style="font-size:1.05rem; color:var(--muted);">
+          Product featured: <strong id="heroProduct" style="color:var(--ink);">Prickly Pear & CoQ10 Regenerating Face Serum (285 AED)</strong>
+        </p>
+        <details open>
+          <summary>Production Specifications & Complimentary License</summary>
+          <p id="heroSummary">
+            Bespoke 9:16 macro studio commercial featuring genuine golden prickly pear elixir droplets, warm hammam travertine reflections, and subtle botanical ASMR sound design. 100% complimentary for your team to download and publish on Instagram Reels, TikTok, or Meta Ads.
+          </p>
+        </details>
+        <div class="cta-row">
+          <a id="downloadMasterBtn" href="videos/IZIL_Beauty_Studio_Ad_9x16.mp4" download class="btn-primary">
+            ⬇ Download Master HD (.MP4)
+          </a>
+          <a href="#packages" class="btn-secondary">Book Appointment</a>
+          <a href="https://wa.me/971508379080" target="_blank" rel="noopener" class="wa-icon-btn" aria-label="WhatsApp">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="packages">
+      <span class="badge">Zero Physical Shipping Required • 72h Turnaround</span>
+      <h2 style="font-size:1.75rem; margin-bottom:8px;">Monthly AI Commercial Production Packs</h2>
+      <div class="tiers">
+        <div class="tier-card">
+          <span class="badge">Growth Pack</span>
+          <h3>5 Custom 9:16 Video Ads / Month</h3>
+          <p style="font-size:1.45rem; font-weight:700; color:var(--brass); margin:8px 0;">2,500 AED <span style="font-size:0.85rem; color:var(--muted); font-weight:400;">/ pack</span></p>
+          <details>
+            <summary>Included Deliverables</summary>
+            <p>5 bespoke 9:16 vertical commercials featuring your exact product packaging, macro studio lighting, luxury UGC hooks, and native ASMR sound design delivered in 72 hours.</p>
+          </details>
+          <div class="cta-row">
+            <a href="https://wa.me/971508379080" target="_blank" rel="noopener" class="btn-primary">Book Appointment</a>
+          </div>
+        </div>
+        <div class="tier-card">
+          <span class="badge">Scale Pack (Best Value)</span>
+          <h3>10 Custom 9:16 Video Ads / Month</h3>
+          <p style="font-size:1.45rem; font-weight:700; color:var(--brass); margin:8px 0;">4,200 AED <span style="font-size:0.85rem; color:var(--muted); font-weight:400;">/ pack</span></p>
+          <details>
+            <summary>Included Deliverables</summary>
+            <p>10 custom 9:16 Reels/TikTok ads across your full product line, A/B visual hooks for Meta Ads, bilingual EN/AR caption variants, and uncompressed Master HD files.</p>
+          </details>
+          <div class="cta-row">
+            <a href="https://wa.me/971508379080" target="_blank" rel="noopener" class="btn-primary">Book Appointment</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" style="margin-top:48px;">
+      <span class="badge">Verified Dubai Luxury Brands</span>
+      <h2 style="font-size:1.75rem; margin-bottom:8px;">Recent 9:16 Studio Commercial Productions</h2>
+      <div class="bento-grid" id="portfolioGrid"></div>
+    </section>
+  </main>
+
+  <a href="https://wa.me/971508379080" target="_blank" rel="noopener" class="wa-icon-btn floating-wa" aria-label="WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
+  </a>
+
+  <footer>
+    <p>© 2026 Dubai AI Commercial Studio • Developed by Tecnoemprende</p>
+  </footer>
+
+  <script>
+    const BRANDS = [{"slug": "izil", "name": "IZIL Beauty Dubai", "product": "Prickly Pear & CoQ10 Regenerating Face Serum", "price": "285 AED", "category": "Luxury Moroccan Botanical Skincare", "folder": "03_IZIL_Beauty_Dubai", "video": "IZIL_Beauty_Studio_Ad_9x16.mp4", "poster": "IZIL_Beauty_Bottle_9x16.jpg", "email": "PR@izilbeauty.com", "summary": "Bespoke 9:16 macro studio commercial featuring genuine golden prickly pear elixir droplets, warm hammam travertine reflections, and subtle botanical ASMR sound design."}, {"slug": "saltandmud", "name": "Salt & Mūd Dubai", "product": "Exfoliating Hand Wash — Born in Dubai", "price": "135 AED", "category": "Homegrown Artisanal Body Care", "folder": "02_Salt_and_Mud_Dubai", "video": "Salt_and_Mud_Studio_Ad_9x16.mp4", "poster": "Salt_and_Mud_Bottle_9x16.jpg", "email": "hello@saltandmud.com", "summary": "Custom 9:16 vertical studio Reel showcasing the iconic amber glass dispenser on wet desert travertine stone with natural water caustics and organic tactile ASMR audio."}, {"slug": "camelsoap", "name": "The Camel Soap Factory Dubai", "product": "Camel Milk Face Cream — Frankincense & Orange", "price": "131 AED", "category": "Authentic UAE Heritage Skincare", "folder": "04_The_Camel_Soap_Factory_Dubai", "video": "Camel_Face_Cream_Studio_Ad_9x16.mp4", "poster": "Camel_Face_Cream_Bottle_9x16.jpg", "email": "info@thecamelsoapfactory.com", "summary": "High-conversion 9:16 product commercial highlighting the exact Frankincense & Orange bottle surrounded by warm Omani frankincense resin tears and golden studio light."}, {"slug": "lootah", "name": "Lootah Perfumes Dubai", "product": "Silky Oud Incense & Luxury Perfumery", "price": "290 AED", "category": "Haute Emirati Perfumery & Bakhoor", "folder": "08_Lootah_Perfumes_Dubai", "video": "Lootah_Silky_Oud_Studio_Ad_9x16.mp4", "poster": "Lootah_Silky_Oud_9x16.jpg", "email": "customerservice@lootahperfumes.com", "summary": "Cinematic 9:16 luxury commercial capturing the crystal Silky Oud jar with delicate aromatic silk-smoke wisps and warm Arabian amber lighting."}, {"slug": "shirley", "name": "Shirley Conlon Organics Dubai", "product": "Miracle Oil — Rosehip 2% + Bio Botox 1%", "price": "270 AED", "category": "Climate-Formulated Organic Skincare", "folder": "01_Shirley_Conlon_Organics_Dubai", "video": "SCO_Miracle_Oil_Full_16s_Master_9x16.mp4", "poster": "SCO_Rose_Hip_Oil_Real_Product.jpg", "email": "info@shirleyconlonorganics.com", "summary": "Dual-scene 16s 9:16 commercial combining hyper-realistic luxury penthouse UGC storytelling with a macro studio packshot of the frosted Miracle Oil dropper bottle."}, {"slug": "arcadia", "name": "Arcadia by Amna Dubai", "product": "Arcadia Auric — Eau de Parfum 100ml", "price": "550 AED", "category": "Fine Niche Perfumery — Dar Wasl", "folder": "07_Arcadia_by_Amna_Dubai", "video": "Arcadia_Auric_Studio_Ad_9x16.mp4", "poster": "Arcadia_Auric_Bottle_9x16.jpg", "email": "info@arcadiabyamna.com", "summary": "Architectural 9:16 fragrance commercial showcasing the minimalist Arcadia Auric flacon with golden prism reflections and fine mist dispersion."}, {"slug": "whind", "name": "Whind Skincare", "product": "Marrakech Light — Illuminating Magic Oil", "price": "295 AED", "category": "Sun-Kissed Luxury Beauty", "folder": "05_Whind_Skincare_Dubai", "video": "Whind_Marrakech_Light_Studio_Ad_9x16.mp4", "poster": "Whind_Marrakech_Light_Bottle_9x16.jpg", "email": "care@whind.com", "summary": "Golden-hour 9:16 commercial celebrating the sculpted amber Marrakech Light bottle with warm sunlit caustics and sensory elixir acoustics."}, {"slug": "dazro", "name": "Dazro Cosmetics Dubai", "product": "Tinted Mineral Dayscreen SPF 30", "price": "75 AED", "category": "Curated K-Beauty & Daily Sun Care", "folder": "06_Dazro_Cosmetics_Dubai", "video": "Dazro_Cosmetics_Studio_Ad_9x16.mp4", "poster": "Dazro_Cosmetics_Bottle_9x16.jpg", "email": "info@dazro.ae", "summary": "Clean 9:16 studio commercial highlighting the Daily Tinted Fluid Sunscreen bottle on minimalist sandstone with crisp morning sunlight."}];
+    const params = new URLSearchParams(window.location.search);
+    const leadSlug = (params.get('lead') || params.get('v') || 'izil').toLowerCase();
+    const activeBrand = BRANDS.find(b => leadSlug.includes(b.slug)) || BRANDS[0];
+
+    const heroVideo = document.getElementById('heroVideo');
+    const heroVideoSrc = document.getElementById('heroVideoSrc');
+    heroVideo.poster = 'videos/' + activeBrand.poster;
+    heroVideoSrc.src = 'videos/' + activeBrand.video;
+    heroVideo.load();
+
+    document.getElementById('heroBadge').textContent = activeBrand.category + ' • Complimentary Sample';
+    document.getElementById('heroTitle').textContent = 'Custom 9:16 Commercial Reel — Prepared for ' + activeBrand.name;
+    document.getElementById('heroProduct').textContent = activeBrand.product + ' (' + activeBrand.price + ')';
+    document.getElementById('heroSummary').textContent = activeBrand.summary + ' 100% complimentary for your team to download and publish on Instagram Reels, TikTok, or Meta Ads.';
+    const dlBtn = document.getElementById('downloadMasterBtn');
+    dlBtn.href = 'videos/' + activeBrand.video;
+    dlBtn.setAttribute('download', activeBrand.video);
+
+    const grid = document.getElementById('portfolioGrid');
+    BRANDS.forEach(b => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="video-frame">
+          <video controls playsinline preload="none" poster="videos/${b.poster}">
+            <source src="videos/${b.video}" type="video/mp4" />
+          </video>
+        </div>
+        <span class="badge" style="margin-bottom:0;">${b.category}</span>
+        <h3 style="font-size:1.15rem;">${b.name}</h3>
+        <p style="font-size:0.9rem; font-weight:600; color:var(--brass);">${b.product} • ${b.price}</p>
+        <details>
+          <summary>Production Details</summary>
+          <p>${b.summary}</p>
+        </details>
+        <div class="cta-row" style="margin-top:auto;">
+          <a href="videos/${b.video}" download="${b.video}" class="btn-secondary" style="padding:10px 16px; font-size:0.85rem;">⬇ Master HD</a>
+          <a href="?lead=${b.slug}" class="btn-primary" style="padding:10px 16px; font-size:0.85rem;">Book Appointment</a>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    document.getElementById('menuBtn').onclick = () => document.getElementById('drawer').classList.add('open');
+    document.getElementById('closeDrawerBtn').onclick = () => document.getElementById('drawer').classList.remove('open');
+    document.getElementById('themeToggleBtn').onclick = () => {
+      const htmlEl = document.documentElement;
+      htmlEl.setAttribute('data-theme', htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    };
+  </script>
+  <script>
+    window.SPY_SITE_ID = "dubai-ai-video-ads";
+    window.SPY_SITE_NAME = "Dubai Luxury AI Video Ads — VIP Brand Showcase";
+    window.SPY_SITE_CATEGORY = "dubai";
+  </script>
+  <script src="spy-tracker.js"></script>
+</body>
+</html>
